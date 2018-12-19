@@ -18,6 +18,7 @@
                     <example-component></example-component>
                 </div>
             </div>
+            <task-form></task-form>
         </div>
     </div>
 </div>
