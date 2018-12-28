@@ -6,8 +6,12 @@
  */
 
 require('./bootstrap');
+// import vuejquery from 'vue-jquery'
+
+// Vue.use(vuejquery)
 
 window.Vue = require('vue');
+window.Event = new Vue(); 
 
 /**
  * The following block of code may be used to automatically register your
@@ -20,8 +24,12 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue..component('task-form', require('./components/TaskForm'))
+Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('task-form', require('./components/TaskForm.vue').default);
+Vue.component('card-component', require('./components/CardComponent.vue').default);
+// Vue.component('card-list', require('./components/CardList.vue').default);
+Vue.component('sidebar', require('./components/SideBarLeft.vue').default);
+Vue.component('card-item', require('./components/CardItem.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -32,3 +40,13 @@ Vue..component('task-form', require('./components/TaskForm'))
 const app = new Vue({
     el: '#app'
 });
+// Vue.component('card-component', {
+//   template: '</template>',
+//   props: [ ],
+//   mounted: function() {
+//   $('.card').click(function(){
+//               $(this).toggleClass('flipped');
+//             });
+//   },
+//   beforeDestroy: function() {}
+// });

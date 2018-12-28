@@ -1,12 +1,15 @@
 <template>
-    <div class="col-md-8">
+    <div class="card mt-4">
         <div class="card card-default">
             <div class="card-header">Task Form</div>
 
             <div class="card-body">
-                <form action="./api/task" method="post">
+                <form action="./api/word" method="post" @submit.prevent="addTask()">
                     <div class="form-group">
-                        <input type="text" name="title" placeholder="Task title" class="form-control">
+                        <input type="text" name="title" v-model="title" placeholder="Local word" class="form-control">
+                    </div>
+                     <div class="form-group">
+                        <input type="text" name="second_title" v-model="second_title" placeholder="Foreign word" class="form-control">
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Add Task" class="btn btn-info">
@@ -18,8 +21,29 @@
 </template>
 <script>
     export default {
+        data(){
+            return{
+                title:'',
+                second_title:''
+            }
+            
+        },
         mounted() {
             console.log('Component mounted.')
+        },
+        methods:{
+            addTask(){
+                
+                Event.$emit('taskCreated',{title:this.title, second_title:this.second_title})
+             
+                axios.post('./api/word', {
+                    title:this.title,
+                    second_title:this.second_title
+                })
+                //   Event.$emit('taskCreated',{title:this.title, second_title:this.second_title});
+                //   this.title='';
+                //   this.second_title='';
+            }
         }
     }
 </script>
