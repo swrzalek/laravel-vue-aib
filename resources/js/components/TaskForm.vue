@@ -1,10 +1,11 @@
 <template>
-    <div class="card mt-4">
-        <div class="card card-default">
+<div class="col-md-6" >
+    <div class="card bg-light mt-4">
             <div class="card-header">Task Form</div>
 
             <div class="card-body">
                 <form action="./api/word" method="post" @submit.prevent="addTask()">
+                    
                     <div class="form-group">
                         <input type="text" name="title" v-model="title" placeholder="Local word" class="form-control">
                     </div>
@@ -16,10 +17,12 @@
                     </div>
                 </form>
             </div>
-        </div>
+       
     </div>
+</div>
 </template>
 <script>
+    import { EventBus } from '../event-bus.js';
     export default {
         data(){
             return{
@@ -32,18 +35,22 @@
             console.log('Component mounted.')
         },
         methods:{
-            addTask(){
-                
-                Event.$emit('taskCreated',{title:this.title, second_title:this.second_title})
-             
+            
+            addTask() {
+                Event.$emit('taskCreated',{title:this.title, second_title:this.second_title});
                 axios.post('./api/word', {
                     title:this.title,
-                    second_title:this.second_title
-                })
-                //   Event.$emit('taskCreated',{title:this.title, second_title:this.second_title});
-                //   this.title='';
-                //   this.second_title='';
-            }
+                    second_title:this.second_title,
+                    
+                     })
+                     this.title = '';
+                     this.second_title = '';
+                     
+                     
+                 }
+    
+    
+ 
         }
     }
 </script>

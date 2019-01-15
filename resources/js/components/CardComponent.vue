@@ -1,34 +1,23 @@
 
 
 <template>
-<div class="container-fluid">
+  
+<div class="container-fluid mt-4">
 <div class="row">
     
-    <div v-for="(word, index) in words" :key="word.id" class="col-sm-3">
+    <div v-for="(word , index) in words" :key="word.id" class="col-sm-2">
       <div class="flip" @mouseover="mouseOver" >
-        <div class="card justify-content-center"> 
-        <button style="width:30px; height:30px; margin-left:10px;" @click='toggle = !toggle' type="button"></button>
-        <div  v-show='toggle' class="third">
-            <button type="button"  @click="removeElement(word.id, index)" class="btn btn-danger">Delete {{word.id}}</word></button>
-            <button type="button" @click="editWord" class="btn btn-warning">Edit</button>
-            <button type="button" class="btn btn-primary">Set Level</button>
-            
-          </div>
-          <div v-if="!word.edditing" class="edit">
-             <input  type="text" v-model="word.title"  @keyup.enter="doneEdit" @keyup.esc="cancelEdit" v-focus>
-              <input type="text" v-model="word.second_title"  @keyup.enter="doneEdit" @keyup.esc="cancelEdit" v-focus>
-              
-            
-
-          </div>
-          <div class="face front"> 
+        <div class="flashcard card justify-content-center"> 
+             <div class="face front"> 
             <div class="inner">   
               <h3>{{word.title}}</h3>
+              
             </div>
           </div> 
           <div class="face back"> 
             <div class="inner"> 
               <h3>{{word.second_title}}</h3>
+              <button type="button" @click="changeColor(this.word.splice)" class="btn btn-success">I remember</button>
             </div>
           </div>
           
@@ -41,26 +30,32 @@
 </template>
 
 <script>
+import { EventBus } from '../event-bus.js';
 import JQuery from 'jquery'
 let $ = JQuery
  export default {
         data(){
          
           return{
+            word: { 'title': '', 'second_title': '' , 'status': ''},
             toggle: false,
             words: []
           }
         },
          created(){
          
-           axios.get('./api/word')
+          axios.get('./api/word')
                 .then(response => this.words = response.data);
-         Event.$on('taskCreated', (title,second_title) => {
-              
-                
+          
+        Event.$on('taskCreated', (title,second_title) => {
+                console.log(title,second_title);
               this.words.push(title);
               this.words.push(second_title);
-          })
+              // axios.get('./api/word')
+              //   .then(response => this.words = response.data);
+          });
+          
+
         },
         mounted() {
             console.log('Component mounted.')
@@ -79,11 +74,14 @@ let $ = JQuery
                 $(".inner").toggle();
               
           },
-          doneEdit(){
-           
-            axios.patch('/api/word/' + word.id, { title:this.title, second_title:this.second_title })
-                .then((respone) => {
-                  console.log('Updated')
+          doneEdit(id){
+            var input = this.word;
+            
+            console.log(input)
+            axios.patch('/api/word/' + id, input)
+                .then((response) => {
+                  this.word = {'title':'' , 'second_title':'' , 'id':'', 'status':'' };
+                  console.log("Success edit");
                 })
           },
           
@@ -98,19 +96,26 @@ let $ = JQuery
                  console.log('error')
               })
           },
-            editonDbclick(){
+          
+          editonDbclick(){
              
               alert('alert')
               $(this).find('.third').css({  visibility: "hidden" });
             },
-            mouseOver(){
+            
+          mouseOver(){
              
-             $(this).find('.card').toggleClass('flipped');
-         
-      
-         
-            }
-        }
-    }
+            $('.card').click(function(){
+            $(this).toggleClass('flipped');
+            // $(this).find('.card').toggleClass('flipped');
+            })
+            
+          },
+          
+          changeColor(index){
+           this.words.splice(index, 1);
+          }
+         }
+ }
 </script>
 

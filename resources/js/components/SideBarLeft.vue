@@ -1,22 +1,18 @@
- <template>
-  <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Dashboard <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Groups</a></li>
-            <li><a href="#">All words</a></li>
-            <li><a href="#">Export</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <!--<li><a href="">Nav item</a></li>-->
-            <!--<li><a href="">Nav item again</a></li>-->
-            <!--<li><a href="">One more nav</a></li>-->
-            <!--<li><a href="">Another nav item</a></li>-->
-            <!--<li><a href="">More navigation</a></li>-->
-          </ul>
-          <ul class="nav nav-sidebar">
-            <!--<li><a href="">Nav item again</a></li>-->
-            <!--<li><a href="">One more nav</a></li>-->
-            <!--<li><a href="">Another nav item</a></li>-->
-          </ul>
+<template>
+      <div id="sidebar-wrapper" class="col-md-2">
+            <div id="sidebar">
+                <ul class="nav list-group">
+                    <li>
+                        <a class="list-group-item" href="./home"><i class="icon-home icon-1x"></i>Homepage</a>
+                    </li>
+                    <li>
+                        <a class="list-group-item" href="./list"><i class="icon-home icon-1x"></i>Word list</a>
+                    </li>
+                    <li>
+                        <a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Export</a>
+                    </li>
+                  </ul>
+            </div>
         </div>
-      </template>
+       
+</template>

@@ -9,7 +9,7 @@
 @import '~bootstrap/scss/bootstrap';
 
 .navbar-laravel {
-  background-color: #fff;
+  // background-color: #273142;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
@@ -18,50 +18,69 @@
  display:none;
 }
 
-.flip {
-  -webkit-perspective: 800;   
-          perspective: 800;
-        position: relative;
-        text-align: center;
+.flip{ 
+  position: relative; 
+  // width: 240px; 
+  height: 120px; 
+  background: none; 
+  top: 50%; 
+  left: 50%; 
+  transform: 
+  translate(-50%, -50%); 
 }
-.flip .card.flipped {
-  -webkit-transform: rotatey(-180deg);
-          transform: rotatey(-180deg);
+
+.flashcard{ 
+  position: relative; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  transform-style: preserve-3d; 
+  transition: all 0.6s ease; 
+  color: #fff;
+  margin-top: 20px;
+ 
 }
-.flip .card {
-    // width: 240px;
-    height: 140px;
-    -webkit-transform-style: preserve-3d;
-    -webkit-transition: 0.5s;
-    transform-style: preserve-3d;
-    transition: 0.5s;
-    background-color: #fff;
-   
+
+.flashcard:hover{ 
+  transform: rotateY(180deg); 
+
 }
-.flip .card .face {
-  -webkit-backface-visibility: hidden ;
-    backface-visibility: hidden ;
-   z-index: 2;
-   
-}
-.flip .card .front {
-//   position: absolute;
-//   width: 240px;
-   z-index: 1;
-}
-.flip .card .back {
-    background-color: blanchedalmond;
-  padding-top: 10%;
-  -webkit-transform: rotatey(-180deg);
-          transform: rotatey(-180deg);
-  position: absolute;
-}
-.flip .card .third {
-  z-index: 3;
+
+.front{ 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  background-color: #3b517c;
+  text-align: center;
+  backface-visibility: hidden; 
+  overflow: hidden; 
+  border-radius: 4px;
   
+  
+  
+
 }
+
+.back{ 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  backface-visibility: hidden; 
+  overflow: hidden; 
+  //background-color: #508bbf; 
+  background-color: #da932c;
+  text-align: center; 
+  transform: rotateY(180deg); 
+  border-radius: 4px;
+}
+
 .inner{
-  margin:0px !important;
+    margin-top:10% !important;
 //   width: 270px;
 }
 /*
@@ -69,48 +88,234 @@
  */
 
 /* Hide for mobile, show later */
-.sidebar {
-  display: none;
+// .sidebar {
+//   display: none;
+// }
+// @media (min-width: 768px) {
+//   .sidebar {
+//     // position: fixed;
+//     //top: 51px;
+//     bottom: 0;
+//     left: 0;
+//     z-index: 1000;
+//     display: block;
+//     padding: 20px;
+//     overflow-x: hidden;
+//     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+//     background-color: #f5f5f5;
+//     border-right: 1px solid #fff;
+    
+//   }
+// }
+
+// /* Sidebar navigation */
+// .nav-sidebar {
+//   margin-right: -21px; /* 20px padding + 1px border */
+//   margin-bottom: 20px;
+//   margin-left: -20px;
+// }
+// .nav-sidebar > li > a {
+//   padding-right: 20px;
+//   padding-left: 20px;
+// }
+// .nav-sidebar > .active > a,
+// .nav-sidebar > .active > a:hover,
+// .nav-sidebar > .active > a:focus {
+//   color: #fff;
+//   background-color: #428bca;
+// }
+
+// .nav>li>a {
+//     position: relative;
+//     display: block;
+//     padding: 10px 15px;
+// }
+
+// .nav {
+//     display: block!important;
+// }
+// .page-header{
+//   color: #fff;
+//   padding-top: 10px;
+  
+  
+
+// }
+// .card-header{
+// //background-color: #4ac3f7;
+// background-color:#2ea1f8;
+// color: white;
+// font-size: 20px;
+// }
+// .col-md-2{
+//   background-color:#222c3c;
+//   //caly sidebar
+   
+// }
+// .nav-sidebar{
+//   //tam gdzie sa zakladki
+//   margin-top: 51px;
+//   padding-top: 10px;
+// }
+// .col-sm-9{
+//   //srodek
+//   //background-color:#fff;
+// }
+// .btn-info{
+//   background-color:#1dd37e;
+//   color: white;
+//   border: none;
+// }
+// .btn-info:hover{
+//   background-color: #3dffa4;
+//   transform: scale(1.05);
+//   transition: transform 0.5s;
+// }
+// .card-body{
+//   background-color: #222c3c;
+// }
+// .html body{
+//   background-color:#2B333F;
+// }
+// ZOSTAW TO W SPOKOJU //
+// .container-fluid{
+//   background-color: #273142;
+// }
+ 
+// .row{
+//   margin-bottom: 150px
+//   ;
+  
+//   // padding-top: -1.5rem !important;
+// }
+// MODAL 
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
 }
-@media (min-width: 768px) {
-  .sidebar {
-    // position: fixed;
-    top: 51px;
-    bottom: 0;
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 300px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal-header h3 {
+  margin-top: 0;
+  color: #42b983;
+}
+
+
+
+.modal-default-button {
+  float: right;
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.panel{
+  color: #000000;
+}
+
+// ** new dashboard ** //
+#main {
+    padding-top: 50px;
+    overflow: hidden;
+}
+#wrapper {
+    min-height: 100%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
     left: 0;
-    z-index: 1000;
-    display: block;
-    padding: 20px;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #f5f5f5;
-    border-right: 1px solid #eee;
-  }
+    display: inline-block;
 }
-
-/* Sidebar navigation */
-.nav-sidebar {
-  margin-right: -21px; /* 20px padding + 1px border */
-  margin-bottom: 20px;
-  margin-left: -20px;
+#main-wrapper {
+    height: 100%;
+    overflow-y: auto;
+    padding: 50px 0 0px 0;
 }
-.nav-sidebar > li > a {
-  padding-right: 20px;
-  padding-left: 20px;
-}
-.nav-sidebar > .active > a,
-.nav-sidebar > .active > a:hover,
-.nav-sidebar > .active > a:focus {
-  color: #fff;
-  background-color: #428bca;
-}
-
-.nav>li>a {
+#main {
     position: relative;
-    display: block;
-    padding: 10px 15px;
+    height: 100%;
+    overflow-y: auto;
+    padding: 0 15px;
 }
-
-.nav {
-    display: block!important;
+#sidebar-wrapper {
+    height: 100%;
+    padding: 55px 0 0px 0;
+    position: fixed;
+    border-right: 1px solid gray;
+}
+#sidebar {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+}
+#sidebar .list-group-item {
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+        border-top: 0;
+}
+@media (max-width: 992px) {
+    body {
+        padding-top: 0px;
+    }
+}
+@media (min-width: 992px) {
+    #main-wrapper {
+        float:right;
+    }
+}
+@media (max-width: 992px) {
+    #main-wrapper {
+        padding-top: 0px;
+    }
+}
+@media (max-width: 992px) {
+    #sidebar-wrapper {
+        position: static;
+        height:auto;
+        max-height: 300px;
+  		border-right:0;
+	}
 }

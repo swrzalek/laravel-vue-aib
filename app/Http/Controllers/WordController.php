@@ -38,6 +38,7 @@ class WordController extends Controller
         Word::create($request->all());
         
         return (['message' => 'success']);
+        this.$forceUpdate();
         
        
     }
@@ -72,8 +73,15 @@ class WordController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
-  
-    }
+ 
+   $data =Word::where('id', $id)->first();
+		$data->title = $request->get('val_1');
+		$data->second_title = $request->get('val_2');
+		$data->status = $request->get('val_3');
+		$data->save();
+		return $data;
+}
+    
 
     /**
      * Remove the specified resource from storage.

@@ -1,16 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
-    <div class="row">
-        <sidebar></sidebar>
-               <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                    <h1 class="page-header">Dashboard</h1>
-                    <task-form></task-form>
-                     <card-component></card-component>
-               </div>
+
+<div id="wrapper">
+    <sidebar></sidebar>
+    <div id="main-wrapper" class="col-md-10 pull-right">
+        <div id="main">
+            <!--<div class="page-header">-->
+            <!--<h3>Admin</h3>-->
+            <!--</div>-->
+            <div class="row">
+            
+                <div class="modal-body row">
+                   <task-form></task-form>
+                    <translate-component></translate-component>
+                </div>
+                      <card-component></card-component>
+            </div>
+        </div>
     </div>
 </div>
+                 
+
+
 
 
   
