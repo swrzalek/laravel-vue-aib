@@ -17,7 +17,7 @@
           <div class="face back"> 
             <div class="inner"> 
               <h3>{{word.second_title}}</h3>
-              <button type="button" @click="changeColor(this.word.splice)" class="btn btn-success">I remember</button>
+              <!--<button type="button" @click="changeColor(this.word.splice)" class="btn btn-success">I remember</button>-->
             </div>
           </div>
           
@@ -37,7 +37,7 @@ let $ = JQuery
         data(){
          
           return{
-            word: { 'title': '', 'second_title': '' , 'status': ''},
+            word: { 'title': '', 'second_title': '' , 'status': '', 'id':''},
             toggle: false,
             words: []
           }
@@ -51,8 +51,10 @@ let $ = JQuery
                 console.log(title,second_title);
               this.words.push(title);
               this.words.push(second_title);
-              // axios.get('./api/word')
-              //   .then(response => this.words = response.data);
+            
+              
+              axios.get('./api/word')
+                .then(response => this.words = response.data);
           });
           
 
@@ -107,7 +109,7 @@ let $ = JQuery
              
             $('.card').click(function(){
             $(this).toggleClass('flipped');
-            // $(this).find('.card').toggleClass('flipped');
+        
             })
             
           },

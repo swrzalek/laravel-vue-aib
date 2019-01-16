@@ -1806,7 +1806,8 @@ var $ = jquery__WEBPACK_IMPORTED_MODULE_1___default.a;
       word: {
         'title': '',
         'second_title': '',
-        'status': ''
+        'status': '',
+        'id': ''
       },
       toggle: false,
       words: []
@@ -1823,9 +1824,11 @@ var $ = jquery__WEBPACK_IMPORTED_MODULE_1___default.a;
 
       _this.words.push(title);
 
-      _this.words.push(second_title); // axios.get('./api/word')
-      //   .then(response => this.words = response.data);
+      _this.words.push(second_title);
 
+      axios.get('./api/word').then(function (response) {
+        return _this.words = response.data;
+      });
     });
   },
   mounted: function mounted() {
@@ -1875,7 +1878,7 @@ var $ = jquery__WEBPACK_IMPORTED_MODULE_1___default.a;
     },
     mouseOver: function mouseOver() {
       $('.card').click(function () {
-        $(this).toggleClass('flipped'); // $(this).find('.card').toggleClass('flipped');
+        $(this).toggleClass('flipped');
       });
     },
     changeColor: function changeColor(index) {
@@ -37411,21 +37414,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "face back" }, [
                   _c("div", { staticClass: "inner" }, [
-                    _c("h3", [_vm._v(_vm._s(word.second_title))]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success",
-                        attrs: { type: "button" },
-                        on: {
-                          click: function($event) {
-                            _vm.changeColor(this.word.splice)
-                          }
-                        }
-                      },
-                      [_vm._v("I remember")]
-                    )
+                    _c("h3", [_vm._v(_vm._s(word.second_title))])
                   ])
                 ])
               ]
@@ -37935,7 +37924,7 @@ var render = function() {
                 expression: "textToTranslate"
               }
             ],
-            staticClass: "form-control",
+            staticClass: "form-control mr-2",
             attrs: { type: "text", placeholder: "Enter a Word..." },
             domProps: { value: _vm.textToTranslate },
             on: {
@@ -37959,7 +37948,7 @@ var render = function() {
                   expression: "language"
                 }
               ],
-              staticClass: "form-control",
+              staticClass: "form-control mr-2",
               on: {
                 change: function($event) {
                   var $$selectedVal = Array.prototype.filter
@@ -38018,7 +38007,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h4", { staticClass: "text-success" }, [
+  return _c("h4", { staticClass: "text-dark" }, [
     _vm._v(_vm._s(_vm.translatedText))
   ])
 }

@@ -1,5 +1,5 @@
 <template>
-  <h4 class="text-success">{{translatedText}}</h4>
+  <h4 class="text-dark">{{translatedText}}</h4>
 </template>
 
 <script>
