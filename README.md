@@ -1,8 +1,8 @@
 ## 1. Specification
 ### 1.1. Description
 #### 1.1.1. Name
-Nazwa ogólna: WordsCoach - web flashcards
-Nazwa krótka: WordsCoach
+Long name: WordsCoach - web flashcards
+Short name: WordsCoach
 
 #### 1.1.3. Characteristic
 Aplciation is build on top of Laravel Framework with Vue.js, main idea was to transfer physical flash cards into online flashcards.
